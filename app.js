@@ -22,13 +22,25 @@ function addItem(e) {
   const value = grocery.value;
   const id = new Date().getTime().toString();
   if (value && !editFlag) {
-    console.log("value added with out edit");
+    displayAlert("Item added Successfully", "success");
   } else if (value && !editFlag) {
-    console.log("value added with edit");
+    displayAlert("Item edited Successfully", "success");
   } else {
-    console.log("empty value");
+    displayAlert("Invalid input, Try again", "danger");
   }
 }
+
+function displayAlert(text, action) {
+  alert.textContent = text;
+  alert.classList.add(`alert-${action}`);
+  // remove alert
+  setTimeout(function () {
+    alert.textContent = "";
+    alert.classList.remove(`alert-${action}`);
+  }, 1000);
+}
+// display alert
+
 // ****** LOCAL STORAGE **********
 
 // ****** SETUP ITEMS **********
