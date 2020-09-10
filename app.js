@@ -22,7 +22,31 @@ function addItem(e) {
   const value = grocery.value;
   const id = new Date().getTime().toString();
   if (value && !editFlag) {
-    displayAlert("Item added Successfully", "success");
+    //   creating element
+    const element = document.createElement("article");
+    // adding class to the element
+    element.classList.add("grocery-item");
+    // creating the attribute
+    const attr = document.createAttribute("data-id");
+    // assigining value to the attribute
+    attr.value = id;
+    // setting attribute to the element
+    element.setAttributeNode(attr);
+    // updating inner Html
+    element.innerHTML = `<p class="title">${value}</p>
+            <div class="btn-container">
+              <button type="button" class="edit-btn">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button type="button" class="edit-btn">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>`;
+    // append child
+    list.appendChild(element);
+    // add class list to the child
+    list.classList.add("show-container");
+    displayAlert("Item added to the list", "success");
   } else if (value && !editFlag) {
     displayAlert("Item edited Successfully", "success");
   } else {
