@@ -21,9 +21,9 @@ function addItem(e) {
   e.preventDefault();
   const value = grocery.value;
   const id = new Date().getTime().toString();
-  if (value !== "" && editFlag === false) {
+  if (value && !editFlag) {
     console.log("value added with out edit");
-  } else if (value !== "" && editFlag === true) {
+  } else if (value && !editFlag) {
     console.log("value added with edit");
   } else {
     console.log("empty value");
