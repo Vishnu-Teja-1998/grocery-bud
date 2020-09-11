@@ -78,11 +78,16 @@ function clearItems() {
   //   container.classList.remove("show-container");
 
   const items = document.querySelectorAll(".grocery-item");
-  items.forEach(function (item) {
-    list.removeChild(item);
-  });
+  if (item.length > 0) {
+    items.forEach(function (item) {
+      list.removeChild(item);
+    });
+  }
+
   displayAlert("All Items Cleared", "danger");
   container.classList.remove("show-container");
+  setBackToDefault();
+  //   localStorage.removeItem("list")
 }
 
 // set back to degault
