@@ -72,7 +72,18 @@ function displayAlert(text, action) {
 }
 
 // clear items
-function clearItems() {}
+function clearItems() {
+  //   list.textContent = "";
+  //   displayAlert("All Items Cleared", "danger");
+  //   container.classList.remove("show-container");
+
+  const items = document.querySelectorAll(".grocery-item");
+  items.forEach(function (item) {
+    list.removeChild(item);
+  });
+  displayAlert("All Items Cleared", "danger");
+  container.classList.remove("show-container");
+}
 
 // set back to degault
 function setBackToDefault() {
