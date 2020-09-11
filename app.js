@@ -8,7 +8,7 @@ const list = document.querySelector(".grocery-list");
 const clearBtn = document.querySelector(".clear-btn");
 
 // edit option
-let editElement;
+let editElement = "";
 let editFlag = false;
 let editId = "";
 
@@ -59,8 +59,12 @@ function addItem(e) {
     addLocalStorage(id, value);
     // set back to degault
     setBackToDefault();
-  } else if (value && !editFlag) {
-    displayAlert("Item edited Successfully", "success");
+  } else if (value && editFlag) {
+    editElement.innerHTML = value;
+    displayAlert("Item edited", "success");
+    // edit local storage
+    editLocalStorage(editId, value);
+    setBackToDefault();
   } else {
     displayAlert("Invalid input, Try again", "danger");
   }
@@ -78,16 +82,16 @@ function displayAlert(text, action) {
 
 // clear items
 function clearItems() {
-  //   list.textContent = "";
-  //   displayAlert("All Items Cleared", "danger");
-  //   container.classList.remove("show-container");
+  list.textContent = "";
+  displayAlert("All Items Cleared", "danger");
+  container.classList.remove("show-container");
 
-  const items = document.querySelectorAll(".grocery-item");
-  if (item.length > 0) {
-    items.forEach(function (item) {
-      list.removeChild(item);
-    });
-  }
+  //   const items = document.querySelectorAll(".grocery-item");
+  //   if (item.length > 0) {
+  //     items.forEach(function (item) {
+  //       list.removeChild(item);
+  //     });
+  //   }
 
   displayAlert("All Items Cleared", "danger");
   container.classList.remove("show-container");
@@ -107,8 +111,13 @@ function deleteItem(e) {
   //   removeFromLocalStorage(id)
 }
 // edit btn
-function editItem() {
-  console.log("item edited");
+function editItem(e) {
+  const element = e.currentTarget.parentElement.parentElement;
+  editElement = e.currentTarget.parentElement.previousElementSibling;
+  editFlag = true;
+  grocery.value = editElement.innerHTML;
+  editId = element.dataset.id;
+  submitBtn.textContent = "Edit";
 }
 // set back to degault
 function setBackToDefault() {
@@ -122,4 +131,5 @@ function addLocalStorage(id, value) {
   console.log("added to local storage");
 }
 function removeFromLocalStorage(id) {}
+function editLocalStorage(id, value) {}
 // ****** SETUP ITEMS **********
