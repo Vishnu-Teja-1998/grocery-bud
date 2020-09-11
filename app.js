@@ -39,10 +39,15 @@ function addItem(e) {
               <button type="button" class="edit-btn">
                 <i class="fas fa-edit"></i>
               </button>
-              <button type="button" class="edit-btn">
+              <button type="button" class="delete-btn">
                 <i class="fas fa-trash"></i>
               </button>
             </div>`;
+    const deleteBtn = element.querySelector(".delete-btn");
+    const editBtn = element.querySelector(".edit-btn");
+    deleteBtn.addEventListener("click", deleteItem);
+    editBtn.addEventListener("click", editItem);
+
     // append child
     list.appendChild(element);
     // add class list to the child
@@ -89,7 +94,14 @@ function clearItems() {
   setBackToDefault();
   //   localStorage.removeItem("list")
 }
-
+// delete btn
+function deleteItem() {
+  console.log("item deleted");
+}
+// edit btn
+function editItem() {
+  console.log("item edited");
+}
 // set back to degault
 function setBackToDefault() {
   grocery.value = "";
